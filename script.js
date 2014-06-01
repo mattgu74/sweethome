@@ -3,22 +3,35 @@ App.controller('home', function (page) {
 	var $mens_input = $page.find('#mens-input');
 	var $ladies_input = $page.find('#ladies-input')
 	var $go_button = $page.find('#go-button');
+	$weight_input = $page.find("#weight-input");
 	var $result = $page.find('#result');
 	
-	var is_a_boy = true;
+	console.log(sessionStorage);
+	if (is_a_boy()) {
+		select_mens();
+	}
+	else {
+		select_ladies();
+	}
+	$weight_input.val(weight());
 	
-	$mens_input.on('click', function() {
+	function select_mens() {
 		$mens_input.attr("src", "mens_black.png");
 		$ladies_input.attr("src", "ladies_white.png");
-		is_a_boy = true;
-	});
+		set_is_a_boy(true);
+	}
 	
-	$ladies_input.on('click', function() {
+	function select_ladies() {
 		$mens_input.attr("src", "mens_white.png");
 		$ladies_input.attr("src", "ladies_black.png");
-		is_a_boy = false;
-	});
+		set_is_a_boy(false);
+	}
 	
+	$weight_input.on('keyup', function() {
+		set_weight($weight_input.val());
+	});
+	$mens_input.on('click', select_mens);
+	$ladies_input.on('click', select_ladies);
 	$go_button.on('click', function() {
 		login();
 	});
@@ -28,13 +41,35 @@ App.controller('apropos', function (page) {
   // put stuff here
 });
 
+function is_a_boy() {
+	var r = sessionStorage.getItem("is_a_boy");
+	if (!r) {
+		return r;
+	}
+	else {
+		return JSON.parse(r);
+	}
+}
+
+function set_is_a_boy(v) {
+	sessionStorage.setItem("is_a_boy", JSON.stringify(v));
+}
+
+function weight() {
+	return sessionStorage.getItem("weight");
+}
+
+function set_weight(v) {
+	sessionStorage.setItem("weight", v);
+}
+
 function displayAlcoolemie(taux) {
 	var $result = $('#result');
 	var $taux = $result.find("#taux");
 	var $description = $result.find("#description");
 	var $image = $result.find("#image");
 	
-	$taux.html(taux + "g");
+	$taux.html(taux + "g/L");
 	if (taux > 0.5) {
 		$description.html("T'es pas en état de conduire buddy...");
 		$image.html('<img src="drunk_cat.jpg" alt="drunk cat"/>');
