@@ -20,18 +20,30 @@ App.controller('home', function (page) {
 	});
 	
 	$go_button.on('click', function() {
-		if (is_a_boy) {
-			$result.html("You may not be safe !!");
-		}
-		else {
-			$result.html("Go on !!");
-		}
+		login();
 	});
 });
 
 App.controller('apropos', function (page) {
   // put stuff here
 });
+
+function displayAlcoolemie(taux) {
+	var $result = $('#result');
+	var $taux = $result.find("#taux");
+	var $description = $result.find("#description");
+	var $image = $result.find("#image");
+	
+	$taux.html(taux + "g");
+	if (taux > 0.5) {
+		$description.html("T'es pas en état de conduire buddy...");
+		$image.html('<img src="drunk_cat.jpg" alt="drunk cat"/>');
+	}
+	else {
+		$description.html("Sois prudent en prenant le volant");
+		$image.html('<img src="driving_cat.jpg" alt="driving cat"/>');
+	}
+}
 
 function getSearchParameters() {
       var prmstr = window.location.search.substr(1);
@@ -53,6 +65,8 @@ var params = getSearchParameters();
 function handle(data) {
   if(data.CAS) {
     window.location.href = data.CAS;
+  } else if (data.SUCCESS) {
+	
   } else {
     console.log(data);
   }
@@ -93,7 +107,6 @@ function login() {
 }
 
 try {
-    login();
     App.restore();
 } catch (err) {
     App.load('home');

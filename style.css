@@ -10,3 +10,10 @@
 #help-icon {
 	height: 44px;
 }
+
+#image img {
+	display: block;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
