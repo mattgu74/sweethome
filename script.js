@@ -23,8 +23,46 @@ function transformToAssocArray( prmstr ) {
 
 var params = getSearchParameters();
 
+function handle(data) {
+  if(data.CAS) {
+    window.location.href = data.CAS;
+  } else {
+    console.log(data);
+  }
+}
+
 function login() {
-  console.log(params);
+  if(params.ticket) {
+    $.ajax({
+      type: 'GET',
+      url: 'backend.php',
+      data: { service: location.protocol + '//' + location.host + location.pathname, ticket: params.ticket },
+      dataType: 'json',
+      timeout: 3000,
+      context: $('body'),
+      success: function(data) {
+        handle(data)
+      },
+      error: function(xhr, type){
+        alert('Ajax error! ' + type)
+      }
+    });  
+  } else {
+    $.ajax({
+      type: 'GET',
+      url: 'backend.php',
+      data: { service: document.URL },
+      dataType: 'json',
+      timeout: 3000,
+      context: $('body'),
+      success: function(data) {
+        handle(data);
+      },
+      error: function(xhr, type){
+        alert('Ajax error! ' + type)
+      }
+    });
+  }
 }
 
 try {
