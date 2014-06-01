@@ -7,7 +7,7 @@ App.controller('home', function (page) {
 	var $result = $page.find('#result');
 	
 	console.log(sessionStorage);
-	if (is_a_boy()) {
+	if (my_sex() == "M") {
 		select_mens();
 	}
 	else {
@@ -18,13 +18,13 @@ App.controller('home', function (page) {
 	function select_mens() {
 		$mens_input.attr("src", "mens_black.png");
 		$ladies_input.attr("src", "ladies_white.png");
-		set_is_a_boy(true);
+		set_my_sex("M");
 	}
 	
 	function select_ladies() {
 		$mens_input.attr("src", "mens_white.png");
 		$ladies_input.attr("src", "ladies_black.png");
-		set_is_a_boy(false);
+		set_my_sex("F");
 	}
 	
 	$weight_input.on('keyup', function() {
@@ -41,18 +41,12 @@ App.controller('apropos', function (page) {
   // put stuff here
 });
 
-function is_a_boy() {
-	var r = sessionStorage.getItem("is_a_boy");
-	if (!r) {
-		return r;
-	}
-	else {
-		return JSON.parse(r);
-	}
+function my_sex() {
+	return sessionStorage.getItem("my_sex");
 }
 
-function set_is_a_boy(v) {
-	sessionStorage.setItem("is_a_boy", JSON.stringify(v));
+function set_my_sex(v) {
+	sessionStorage.setItem("my_sex", v);
 }
 
 function weight() {
