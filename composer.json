@@ -1,0 +1,5 @@
+{
+    "require": {
+        "payutc/php-client": "dev-master"
+    }
+}
