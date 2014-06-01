@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SweetHome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="app.min.css">
+    <style>
+      /* TODO */
+    </style>
+  </head>
+
+  <body>
+    <div class="app-page" data-page="home">
+      <div class="app-topbar">
+        <div class="app-title">SweetHome</div>
+      </div>
+      <div class="app-content">
+        <div class="app-section">
+          <div class="app-button" data-target="apropos">A propos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-page" data-page="apropos">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">A propos</div>
+      </div>
+      <div class="app-content">
+        SweetHome est une application permettant de connaitre une estimation de ton taux d'alcoolémie. <br />
+        De nombreux paramètres entre en compte, et chaque individu est différent, par conséquent ton taux d'alcoolémie réel est forcément différent. <br />
+        <br />
+        Cette application ne peux être tenu pour responsable, pour quoi que ce soit.<br /><br />
+        Le but de cette application est de permettre une sensibilisation à la consommation d'alcool.<br />
+      </div>
+    </div>
+
+    <script src="zepto.js"></script>
+    <script src="app.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
