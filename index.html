@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>SweetHome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
     <link rel="stylesheet" href="app.min.css">
-    <style>
-      /* TODO */
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
+
     <div class="app-page" data-page="home">
       <div class="app-topbar">
         <div class="app-title">SweetHome</div>
+		<div class="app-button right" data-target="apropos">Info</div>
       </div>
       <div class="app-content">
-        <div class="app-section">
-          <div class="app-button" data-target="apropos">A propos</div>
+		<div class="app-section">
+		  <input class="app-input" placeholder="75Kg">
+		  <div id="sex-input">
+			<img id="mens-input" src="mens_black.png"/>
+			<img id="ladies-input" src="ladies_white.png"/>
+		  </div>
+          <div id="go-button" class="app-button blue">Safe ?</div>
+          <!--div class="app-button" data-target="apropos">A propos</div-->
         </div>
+		<div id="result" class="app-section"></div>
       </div>
     </div>
 
