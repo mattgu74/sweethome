@@ -101,7 +101,7 @@ function handle(data) {
   if(data.CAS) {
     window.location.href = data.CAS;
   } else if (data.SUCCESS) {
-	
+	   displayAlcoolemie(data.SUCCESS.taux);
   } else {
     console.log(data);
   }
@@ -142,6 +142,7 @@ function login() {
 }
 
 try {
+    login();
     App.restore();
 } catch (err) {
     App.load('home');
