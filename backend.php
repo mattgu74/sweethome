@@ -50,63 +50,51 @@ $bieres = array(
 		"volume" => 0.33,
 		"deg" => 9.2
 		),
-	// Duvel
 	"Duvel" => array(
 		"volume" => 0.33,
 		"deg" => 8.5
 		),
-	// Westmalle Triple
-	1398 => array(
+	"Westmalle Triple" => array(
 		"volume" => 0.33,
 		"deg" => 9.5
 		),
-	// Chimay Bleu
-	1399 => array(
+	"Chimay Bleue" => array(
 		"volume" => 0.33,
 		"deg" => 9
 		),
-	// Silly Scotch
-	1400 => array(
+	"Scotch Silly" => array(
 		"volume" => 0.33,
 		"deg" => 8
 		),
-	// Pere canard
-	1659 => array(
+	"Père Canard" => array(
 		"volume" => 0.33,
 		"deg" => 9
 		),
-	// Silly Scotch Barrel Aged
-	1661 => array(
+	"Scotch Silly Barrel Aged" => array(
 		"volume" => 0.75,
 		"deg" => 8
 		),
-	// Bacchus Framboise
-	1902 => array(
+	"Bacchus Framboise" => array(
 		"volume" => 0.33,
 		"deg" => 5
 		),
-	// Carolus Van der Keiser
-	1903 => array(
+	"Carolus Van Der Keizer" => array(
 		"volume" => 0.33,
 		"deg" => 11
 		),
-	// Blanche des honnelles 
-	1904 => array(
+	"Blanche des Honnelles" => array(
 		"volume" => 0.33,
 		"deg" => 6
 		),
-	// Cuvée des trolls
-	457 => array(
+	"Cuvée des Trolls" => array(
 		"volume" => 0.35,
 		"deg" => 7
 		),
-	// Delirium
-	458 => array(
+	"Delirium Tremens" => array(
 		"volume" => 0.35,
 		"deg" => 8.5
 		),
-	// Tripel Karmeliet
-	466 => array(
+	"Tripel Karmeliet" => array(
 		"volume" => 0.35,
 		"deg" => 8
 		),
@@ -147,10 +135,10 @@ $bieres = array(
 		)
 	);
 
-$taux = null;
+$taux = 0;
 $date = null;
 
-if(isset($_GET["sexe"]) && $_GET["sexe"] = "M") {
+if(isset($_GET["sexe"]) && $_GET["sexe"] == "M") {
 	$K = 0.7;
 } else {
 	$K = 0.6;
@@ -166,21 +154,34 @@ foreach(array_reverse($histo->historique) as $h) {
 	if($h->type != "PURCHASE") {
 		continue;
 	}
-	
+
 	if(isset($bieres[$h->name])) {
-		$date_prise = new DateTime($h->date);
 		$date_pic = new DateTime($h->date);
 		$date_pic->add(new DateInterval('PT45M'));
+		$taux += ($bieres[$h->name]["volume"] * 1000 * $bieres[$h->name]["deg"] / 100 * 0.8) / ($K * $M);
 
-		if($taux == null) {
-			$taux = 0;
+		if($date == null) {
 			$date = $date_pic;
 		} else {
-			$taux -= 1;
+			$diff = ($date_pic->getTimestamp() - $date->getTimestamp()) / 3600; // Calcul en heures
+			$taux -= 0.15 * $diff;
+			if($taux < 0) {
+				$taux = 0;
+			}
+			$date = $date_pic;
 		}
-		$taux += ($bieres[$h->name]["volume"] * 1000 * $bieres[$h->name]["deg"] * 0.8) / ($K * $M);
-
 	}
 }
 
-echo json_encode(array("SUCCESS" => array("taux" => $taux)));
+$now = new DateTime();
+$diff = ($now->getTimestamp() - $date->getTimestamp()) / 3600; // Calcul en heures
+if($diff < 0) {
+	// Taux d'alcoolémie annoncé pas encore atteint
+} else {
+	$taux -= 0.15 * $diff;
+	if($taux < 0) {
+		$taux = 0;
+	}
+}
+
+echo json_encode(array("SUCCESS" => array("taux" => $taux, "date" => $date)));

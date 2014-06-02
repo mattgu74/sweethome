@@ -109,7 +109,8 @@ function login() {
       data: { 
           service: location.protocol + '//' + location.host + location.pathname, 
           ticket: params.ticket,
-          masse: weight()
+          masse: weight(),
+          sexe: my_sex()
       },
       dataType: 'json',
       timeout: 3000,
