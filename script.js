@@ -6,7 +6,6 @@ App.controller('home', function (page) {
 	$weight_input = $page.find("#weight-input");
 	var $result = $page.find('#result');
 	
-	console.log(sessionStorage);
 	if (my_sex() == "M") {
 		select_mens();
 	}
