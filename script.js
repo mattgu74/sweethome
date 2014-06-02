@@ -112,7 +112,11 @@ function login() {
     $.ajax({
       type: 'GET',
       url: 'backend.php',
-      data: { service: location.protocol + '//' + location.host + location.pathname, ticket: params.ticket },
+      data: { 
+          service: location.protocol + '//' + location.host + location.pathname, 
+          ticket: params.ticket,
+          masse: weight()
+      },
       dataType: 'json',
       timeout: 3000,
       context: $('body'),
