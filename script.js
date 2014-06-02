@@ -50,7 +50,12 @@ function set_my_sex(v) {
 }
 
 function weight() {
-	return sessionStorage.getItem("weight");
+	w = sessionStorage.getItem("weight");
+  if(!w) {
+    return 70;
+  } else {
+    return w;
+  }
 }
 
 function set_weight(v) {
@@ -63,14 +68,15 @@ function displayAlcoolemie(taux) {
 	var $description = $result.find("#description");
 	var $image = $result.find("#image");
 	
-	$taux.html(taux + "g/L");
-	if (taux > 0.5) {
-		$description.html("T'es pas en état de conduire buddy...");
-		$image.html('<img src="drunk_cat.jpg" alt="drunk cat"/>');
-	}
-	else {
-		$description.html("Sois prudent en prenant le volant");
-		$image.html('<img src="driving_cat.jpg" alt="driving cat"/>');
+	$taux.html(taux + "g/L de sang");
+  if(taux == 0) {
+    $description.html("A priori, tu n'es pas sous l'effet de l'alcool, c'est bien.");
+  } else if (taux < 0.5) {
+    $description.html("Tu as un peu bu, mais il semble que tu puisses prendre le volant, fait quand même attention.");
+  } else if (taux < 2) {
+		$description.html("Tu n'es pas en état de conduire, fait attention à toi.");
+	} else {
+		$description.html("Arrête de boire ! N'oublie pas qu'à 3g/L tu risques le coma éthylique !");
 	}
 }
 
