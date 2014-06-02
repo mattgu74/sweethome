@@ -98,38 +98,31 @@ $bieres = array(
 		"volume" => 0.35,
 		"deg" => 8
 		),
-	// Mc Chouffe
-	697 => array(
+	"Mc Chouffe" => array(
 		"volume" => 0.35,
 		"deg" => 8
 		),
-	// Gauloise Rouge
-	1401 => array(
+	"Gauloise Rouge" => array(
 		"volume" => 0.35,
 		"deg" => 8.2
 		),
-	// Kwak
-	1402 => array(
+	"Kwak" => array(
 		"volume" => 0.35,
 		"deg" => 8.1
 		),
-	// Hopus
-	1664 => array(
+	"Hopus" => array(
 		"volume" => 0.35,
 		"deg" => 8.3
 		),
-	// Carolus Classic
-	1666 => array(
+	"Carolus Classic" => array(
 		"volume" => 0.35,
 		"deg" => 8.5
 		),
-	// Barbar Bok
-	1667 => array(
+	"Barbar Bok" => array(
 		"volume" => 0.35,
 		"deg" => 8.5
 		),
-	// Chouffe Soleil
-	1796 => array(
+	"Chouffe Soleil" => array(
 		"volume" => 0.35,
 		"deg" => 6
 		)
