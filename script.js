@@ -103,6 +103,7 @@ function handle(data) {
 	   displayAlcoolemie(data.SUCCESS.taux);
      var d1 = new Date(data.SUCCESS.date.date);
      var now = new Date();
+     var $result = $('#result');
      var $heure = $result.find("#heure");
      if (d1 > now) {
       $heure.html("Ce taux sera atteint dans "+(d1 - now)/60000+"min.");
