@@ -170,18 +170,17 @@ foreach(array_reverse($histo->historique) as $h) {
 }
 
 $now = new DateTime();
-try {
-$diff = ($now->getTimestamp() - $date->getTimestamp()) / 3600; // Calcul en heures
-if($diff < 0) {
-	// Taux d'alcoolémie annoncé pas encore atteint
-} else {
-	$taux -= 0.15 * $diff;
-	if($taux < 0) {
-		$taux = 0;
+
+if($date) {
+	$diff = ($now->getTimestamp() - $date->getTimestamp()) / 3600; // Calcul en heures
+	if($diff < 0) {
+		// Taux d'alcoolémie annoncé pas encore atteint
+	} else {
+		$taux -= 0.15 * $diff;
+		if($taux < 0) {
+			$taux = 0;
+		}
 	}
-}
-} catch(Exception $e) {
-	
 }
 
 echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "date" => $date, "histo" => $histo)));
