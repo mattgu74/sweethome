@@ -75,11 +75,11 @@ $bieres = array(
 		"deg" => 8
 		),
 	"Bacchus Framboise" => array(
-		"volume" => 0.33,
+		"volume" => 0.375,
 		"deg" => 5
 		),
 	"Carolus Van Der Keizer" => array(
-		"volume" => 0.33,
+		"volume" => 0.75,
 		"deg" => 11
 		),
 	"Blanche des Honnelles" => array(
@@ -125,6 +125,18 @@ $bieres = array(
 	"Chouffe Soleil" => array(
 		"volume" => 0.35,
 		"deg" => 6
+		),
+	"Blanche des Honnelles" => array(
+		"volume" => 0.33,
+		"deg" => 6
+		),
+	"Titje" => array(
+		"volume" => 0.25,
+		"deg" => 5
+		),
+	"Double Enghien" => array(
+		"volume" => 0.35,
+		"deg" => 7.5
 		)
 	);
 
