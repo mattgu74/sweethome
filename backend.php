@@ -143,7 +143,7 @@ if(isset($_GET["masse"])) {
 	$M = 60;
 }
 
-$histo = array();
+$historique = array();
 
 foreach(array_reverse($histo->historique) as $h) {
 	if($h->type != "PURCHASE") {
@@ -153,7 +153,6 @@ foreach(array_reverse($histo->historique) as $h) {
 	if(isset($bieres[$h->name])) {
 		$date_pic = new DateTime($h->date);
 		$date_pic->add(new DateInterval('PT45M'));
-
 		if($date == null) {
 			$date = $date_pic;
 		} else {
@@ -163,7 +162,7 @@ foreach(array_reverse($histo->historique) as $h) {
 				$taux = 0;
 			}
 			$date = $date_pic;
-			$histo[] = array("date"=> $date, "taux"=>$taux);
+			$historique[] = array("date"=> $date, "taux"=>$taux);
 		}
 		$taux += ($bieres[$h->name]["volume"] * 1000 * $bieres[$h->name]["deg"] / 100 * 0.8) / ($K * $M);
 	}
@@ -183,4 +182,4 @@ if($date) {
 	}
 }
 
-echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "date" => $date, "histo" => $histo)));
+echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "date" => $date, "histo" => $historique)));
