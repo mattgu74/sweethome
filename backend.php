@@ -143,6 +143,8 @@ if(isset($_GET["masse"])) {
 	$M = 60;
 }
 
+$histo = array();
+
 foreach(array_reverse($histo->historique) as $h) {
 	if($h->type != "PURCHASE") {
 		continue;
@@ -161,6 +163,7 @@ foreach(array_reverse($histo->historique) as $h) {
 				$taux = 0;
 			}
 			$date = $date_pic;
+			$histo[] = array("date"=> $date, "taux"=>$taux);
 		}
 		$taux += ($bieres[$h->name]["volume"] * 1000 * $bieres[$h->name]["deg"] / 100 * 0.8) / ($K * $M);
 	}
@@ -177,4 +180,4 @@ if($diff < 0) {
 	}
 }
 
-echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "date" => $date)));
+echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "date" => $date, "histo" => $histo)));
