@@ -111,7 +111,7 @@ function handle(data) {
       var min = Math.round((now - d1)/60000);
       var heure = Math.round(min/60);
       var min = min % 60;
-      $heure.html("Vous étiez à " + data.SUCCESS.tauxmax + " g/L de sang il y'a "+heure +"h "+ min+"min.");
+      $heure.html("Tu étais à " + data.SUCCESS.tauxmax + " g/L de sang il y'a "+heure +"h "+ min+"min.");
      }
   } else {
     console.log(data);
