@@ -162,9 +162,9 @@ foreach(array_reverse($histo->historique) as $h) {
 				$taux = 0;
 			}
 			$date = $date_pic;
-			$historique[] = array("date"=> $date, "taux"=>$taux);
 		}
 		$taux += ($bieres[$h->name]["volume"] * 1000 * $bieres[$h->name]["deg"] / 100 * 0.8) / ($K * $M);
+		$historique[] = array("date"=> $date, "taux"=>$taux);
 	}
 }
 
