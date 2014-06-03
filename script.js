@@ -106,9 +106,12 @@ function handle(data) {
      var $result = $('#result');
      var $heure = $result.find("#heure");
      if (d1 > now) {
-      $heure.html("Ce taux sera atteint dans "+(d1 - now)/60000+"min.");
+      $heure.html("Ce taux sera atteint dans "+Math.round((d1 - now)/60000)+"min.");
      } else {
-      $heure.html("Vous étiez à " + data.SUCCESS.tauxmax + " g/L de sang il y'a "+(now - d1)/60000+"min.");
+      var min = Math.round((now - d1)/60000);
+      var heure = Math.round(min/60);
+      var min = min % 60;
+      $heure.html("Vous étiez à " + data.SUCCESS.tauxmax + " g/L de sang il y'a "+heure +"h "+ min+"min.");
      }
   } else {
     console.log(data);
