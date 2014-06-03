@@ -169,7 +169,7 @@ foreach(array_reverse($histo->historique) as $h) {
 }
 
 $now = new DateTime();
-
+$tauxmax = $taux;
 if($date) {
 	$diff = ($now->getTimestamp() - $date->getTimestamp()) / 3600; // Calcul en heures
 	if($diff < 0) {
@@ -182,4 +182,4 @@ if($date) {
 	}
 }
 
-echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "date" => $date, "histo" => $historique)));
+echo json_encode(array("SUCCESS" => array("taux" => number_format($taux, 2), "tauxmax" => number_format($tauxmax, 2), "date" => $date, "histo" => $historique)));

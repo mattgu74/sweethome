@@ -101,6 +101,14 @@ function handle(data) {
     window.location.href = data.CAS;
   } else if (data.SUCCESS) {
 	   displayAlcoolemie(data.SUCCESS.taux);
+     var d1 = new Date(data.SUCCESS.date.date);
+     var now = new Date();
+     var $heure = $result.find("#heure");
+     if (d1 > now) {
+      $heure.html("Ce taux sera atteint dans "+(d1 - now)/60000+"min.");
+     } else {
+      $heure.html("Vous étiez à " + data.SUCCESS.tauxmax + " g/L de sang il y'a "+(now - d1)/60000+"min.");
+     }
   } else {
     console.log(data);
   }
