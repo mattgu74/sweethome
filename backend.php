@@ -143,6 +143,8 @@ if(isset($_GET["masse"])) {
 	$M = 60;
 }
 
+$histo = array();
+
 foreach(array_reverse($histo->historique) as $h) {
 	if($h->type != "PURCHASE") {
 		continue;
@@ -162,6 +164,7 @@ foreach(array_reverse($histo->historique) as $h) {
 				$taux = 0;
 			}
 			$date = $date_pic;
+			$histo[] = array("date"=> $date, "taux"=>$taux);
 		}
 	}
 }
@@ -177,4 +180,4 @@ if($diff < 0) {
 	}
 }
 
-echo json_encode(array("SUCCESS" => array("taux" => $taux, "date" => $date)));
+echo json_encode(array("SUCCESS" => array("taux" => $taux, "date" => $date, "histo" => $histo)));
